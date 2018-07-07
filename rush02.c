@@ -6,39 +6,41 @@
 /*   By: eschnell <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/07/07 10:03:33 by eschnell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/07/07 14:47:48 by eschnell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/07/07 17:02:11 by eschnell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include <stdio.h>
 void	ft_putchar(char);
+void	ft_print(char);
 
-void	ft_print(char c)
+void	ft_printline(int z, int i, int x)
 {
-	if (c == 'a')
-		ft_putchar('A');
-	else if (c == 'b')
-		ft_putchar('B');
-	else if (c == 'c')
-		ft_putchar('C');
-	else if (c == 'd')
-		ft_putchar(' ');
-	else if (c == 'n')
-		ft_putchar('\n');
-}
-
-void	ft_printline(int i, int x)
-{
-	while (i <= x)
+	if (z == 1)
 	{
-		if (i == 1 || i == x)
-			ft_print('a');
-		else
-			ft_print('b');
-		i++;
+		while (i <= x)
+		{
+			if (i == 1 || i == x)
+				ft_print('a');
+			else
+				ft_print('b');
+			i++;
+		}
+		ft_print('n');
 	}
-	ft_print('n');
+	else if (z == 2)
+	{
+		i = 1;
+		while (i <= x)
+		{
+		if (i == 1 || i == x)
+			ft_print('b');
+		else
+			ft_print('d');
+			i++;
+		}
+		ft_print('n');
+	}
 }
 
 void	ft_printcolumn(int j, int y)
@@ -65,20 +67,9 @@ void	ft_printsquare(int i, int j, int x, int y)
 	{
 		i = stock_i;
 		if (i == 1)
-			ft_printline(i, x);
+			ft_printline(1, i, x);
 		else if (j > 1 && j < y)
-		{
-			i = 1;
-			while (i <= x)
-			{
-				if (i == 1 || i == x)
-					ft_print('b');
-				else
-					ft_print('d');
-				i++;
-			}
-			ft_print('n');
-		}
+			ft_printline(2, i, x);
 		else
 		{
 			i = 1;
@@ -90,6 +81,7 @@ void	ft_printsquare(int i, int j, int x, int y)
 					ft_print('b');
 				i++;
 			}
+			ft_print('n');
 		}
 		j++;
 		stock_i++;
@@ -104,9 +96,12 @@ void	rush(int x, int y)
 	i = 1;
 	j = 1;
 	if (x == 1 && y == 1)
+	{
 		ft_print('a');
+		ft_print('n');
+	}
 	else if (y == 1)
-		ft_printline(j, x);
+		ft_printline(1, j, x);
 	else if (x == 1)
 		ft_printcolumn(i, y);
 	else
